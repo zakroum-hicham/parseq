@@ -1,4 +1,4 @@
-from parseq.system import PARSeq
+from model.system import PARSeq
 
 from typing import Sequence
 
