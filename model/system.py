@@ -28,7 +28,7 @@ from pytorch_lightning.utilities.types import STEP_OUTPUT
 from timm.models.helpers import named_apply
 
 from .base import CrossEntropySystem
-from ..utils import init_weights
+from ..help import init_weights
 from .modules import DecoderLayer, Decoder, Encoder, TokenEmbedding
 
 
