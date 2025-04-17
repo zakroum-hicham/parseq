@@ -29,7 +29,7 @@ import torch
 
 from tqdm import tqdm
 
-from .utils import load_from_checkpoint, parse_model_args
+from utils import load_from_checkpoint, parse_model_args
 
 from PIL import Image
 import json
