@@ -7,8 +7,7 @@ class InvalidModelError(RuntimeError):
 
 
 def load_from_checkpoint(checkpoint_path: str, **kwargs):
-    parseq = PARSeq()
-    model = parseq.load_from_checkpoint(checkpoint_path, **kwargs)
+    model = PARSeq.load_from_checkpoint(checkpoint_path, **kwargs)
     return model
 
 
