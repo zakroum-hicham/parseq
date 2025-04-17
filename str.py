@@ -81,12 +81,7 @@ def main():
     parser.add_argument('--data_root', default='data')
     parser.add_argument('--batch_size', type=int, default=512)
     parser.add_argument('--num_workers', type=int, default=4)
-    parser.add_argument('--std', action='store_true', default=False, help='Evaluate on standard benchmark datasets')
-    parser.add_argument('--new', action='store_true', default=False, help='Evaluate on new benchmark datasets')
-    parser.add_argument('--custom', action='store_true', default=True, help='Evaluate on custom personal datasets')
-    parser.add_argument('--rotation', type=int, default=0, help='Angle of rotation (counter clockwise) in degrees.')
     parser.add_argument('--device', default='cuda')
-    parser.add_argument('--inference', action='store_true', default=False, help='Run inference and store prediction results')
     parser.add_argument('--result_file', default='outputs/preds.json')
     args, unknown = parser.parse_known_args()
     kwargs = parse_model_args(unknown)
@@ -100,9 +95,7 @@ def main():
     model = load_from_checkpoint(args.checkpoint, **kwargs).eval().to(args.device)
     hp = model.hparams
 
-    if args.inference:
-        run_inference(model, args.data_root, args.result_file, hp.img_size)
-        exit()
+    run_inference(model, args.data_root, args.result_file, hp.img_size)
 
 
 if __name__ == '__main__':

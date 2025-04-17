@@ -1,11 +1,5 @@
 from .system import PARSeq
 
-
-class InvalidModelError(RuntimeError):
-    """Exception raised for any model-related error (creation, loading)"""
-
-
-
 def load_from_checkpoint(checkpoint_path: str, **kwargs):
     model = PARSeq.load_from_checkpoint(checkpoint_path, **kwargs)
     return model
