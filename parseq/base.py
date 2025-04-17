@@ -21,7 +21,7 @@ from typing import Optional, Tuple, List
 import pytorch_lightning as pl
 import torch.nn.functional as F
 from nltk import edit_distance
-from pytorch_lightning.utilities.types import EPOCH_OUTPUT, STEP_OUTPUT
+from pytorch_lightning.utilities.types import STEP_OUTPUT
 from timm.optim import create_optimizer_v2
 from torch import Tensor
 from torch.optim import Optimizer
@@ -128,7 +128,7 @@ class BaseSystem(pl.LightningModule, ABC):
         return dict(output=BatchResult(total, correct, ned, confidence, label_length, loss, loss_numel))
 
     @staticmethod
-    def _aggregate_results(outputs: EPOCH_OUTPUT) -> Tuple[float, float, float]:
+    def _aggregate_results(outputs) -> Tuple[float, float, float]:
         if not outputs:
             return 0., 0., 0.
         total_loss = 0
@@ -151,7 +151,7 @@ class BaseSystem(pl.LightningModule, ABC):
     def validation_step(self, batch, batch_idx) -> Optional[STEP_OUTPUT]:
         return self._eval_step(batch, True)
 
-    def validation_epoch_end(self, outputs: EPOCH_OUTPUT) -> None:
+    def validation_epoch_end(self, outputs) -> None:
         acc, ned, loss = self._aggregate_results(outputs)
         self.log('val_accuracy', 100 * acc, sync_dist=True)
         self.log('val_NED', 100 * ned, sync_dist=True)
