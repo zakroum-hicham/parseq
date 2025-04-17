@@ -25,7 +25,7 @@ import torch.nn.functional as F
 from torch import Tensor
 
 from pytorch_lightning.utilities.types import STEP_OUTPUT
-from timm.models.helpers import named_apply
+from timm.models import named_apply
 
 from .base import CrossEntropySystem
 from .modules import DecoderLayer, Decoder, Encoder, TokenEmbedding
